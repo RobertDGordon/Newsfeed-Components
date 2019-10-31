@@ -165,43 +165,46 @@ function createArticle(t, d, pa1, pa2, pa3){
   const article = create ('div')  
   const title = create ('h2')
   const date = create ('p')
+  const paragraphs = create ('div')
   const p1 = create ('p')
   const p2 = create ('p')
   const p3 = create ('p')
   const button = create ('span')
-
-  // console.log (button)
-  // const buttonO = create ('button')
-  // const buttonC = create ('button')
+/** stretch */
+  const buttonO = create ('span')
+  const buttonC = create ('span')
 
   article.appendChild(title);
   article.appendChild(date);
-  article.appendChild(p1);
-  article.appendChild(p2);
-  article.appendChild(p3);
+  article.appendChild(paragraphs);
+  paragraphs.appendChild(p1);
+  paragraphs.appendChild(p2);
+  paragraphs.appendChild(p3);
   article.appendChild(button);
-  // article.appendChild(buttonO);
-  // article.appendChild(buttonC);
+  button.appendChild(buttonO);
+  button.appendChild(buttonC);
 
 
   article.classList.add('article')
   date.classList.add ('date')
-  button.classList.add('expandButton')
-  // buttonO.classList.add('button')
-  // buttonC.classList.add('button')
+  paragraphs.classList.add ('paragraphs')
+  button.classList.add('buttonPanel')
+  buttonO.classList.add('expandButton')
+  buttonC.classList.add('closeButton', 'hide-btn')
 
-  // buttonO.textContent = '\u25bc';
-  // buttonC.textContent = '\u25b2';
+  buttonO.textContent = '\u25bc';
+  buttonC.textContent = '\u25b2';
 
   title.textContent = t
   date.textContent = d
   p1.textContent = pa1
   p2.textContent = pa2
   p3.textContent = pa3
-  button.textContent = '\u25bc'
 
   button.addEventListener('click', ()=> {
     article.classList.toggle('article-open')
+    buttonO.classList.toggle('hide-btn')
+    buttonC.classList.toggle('hide-btn')
   })
 
   return article
@@ -213,4 +216,26 @@ const article = document.querySelector('.articles')
 data.forEach(data => {
   article.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
 })
+
+// Doesn't work...
+$('.closeButton').click(function(){
+  $('.article-open').slideToggle(500);
+});
+
+// GSAP
+
+
+
+// const buttonC = document.querySelector('.closeButton')
+// buttonC.addEventListener('click', ()=>{
+//   // console.log('clicky')
+//   // TweenMax.to(".article-open", 2, {
+//   //   y: -100,
+//   // });
+
+
+
+
+// })
+
 

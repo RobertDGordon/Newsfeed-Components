@@ -46,17 +46,35 @@ function menuCreate (array){
     listCont.appendChild(items)
   })
 
+  menu.classList.add('menu')
   menu.appendChild(listCont)
 
   const menuBtn = document.querySelector('.menu-button')
   console.log (menuBtn)
   menuBtn.addEventListener('click', ()=>{
-    menuBtn.classList.toggle('menu--open')
+    menu.classList.toggle('menu--open')
   })
 
   return menu
 }
 
-const menuButton = document.querySelector('.menu-button')
+const menuButton = document.querySelector('.header')
 
-menuButton.prepend(menuCreate(menuItems))
+menuButton.appendChild(menuCreate(menuItems))
+
+
+// JQuery... ugh...
+$('.menu-button').click(function(){
+  $('.menu').slideToggle(500);
+});
+
+
+//GSAP...
+// var menu = new TimelineMax({paused:true, reversed:true})
+	
+// menu
+// .to("header", 0.75, {y: "-300px", ease:Power2.easeInOut})
+
+// function menuIn() {
+// menu.reversed() ? menu.play() : menu.reverse();	
+// }
