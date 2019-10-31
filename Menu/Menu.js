@@ -33,3 +33,48 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+const create = element => document.createElement(element);
+
+function menuCreate (array){
+  const menu = create ('div')
+  const listCont = create ('ul')
+  
+  array.forEach(item =>{
+    const items = create ('li')
+    items.textContent = item
+    listCont.appendChild(items)
+  })
+
+  menu.classList.add('menu')
+  menu.appendChild(listCont)
+
+  const menuBtn = document.querySelector('.menu-button')
+  console.log (menuBtn)
+  menuBtn.addEventListener('click', ()=>{
+    menu.classList.toggle('menu--open')
+  })
+
+  return menu
+}
+
+const menuButton = document.querySelector('.header')
+
+menuButton.appendChild(menuCreate(menuItems))
+
+
+// JQuery... ugh...
+$('.menu-button').click(function(){
+  $('.menu').slideToggle(500);
+});
+
+
+//GSAP...
+// var menu = new TimelineMax({paused:true, reversed:true})
+	
+// menu
+// .to("header", 0.75, {y: "-300px", ease:Power2.easeInOut})
+
+// function menuIn() {
+// menu.reversed() ? menu.play() : menu.reverse();	
+// }
